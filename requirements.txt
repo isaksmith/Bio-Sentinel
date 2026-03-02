@@ -1,0 +1,7 @@
+# Core
+numpy>=1.24
+opencv-python>=4.8
+
+# Testing
+pytest>=7.4
+pytest-html>=4.0

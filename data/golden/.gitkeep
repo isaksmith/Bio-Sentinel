@@ -1,0 +1,3 @@
+# This directory holds golden dataset images for regression tests.
+# Add .jpg / .png files here; they are git-ignored by default.
+# If empty, the test suite falls back to synthetic images.

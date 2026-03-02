@@ -1,0 +1,5 @@
+# Phase 2: Real model dependencies (heavier)
+# Keep separate so core framework stays lightweight.
+ultralytics>=8.0
+torch>=2.0
+torchvision>=0.15

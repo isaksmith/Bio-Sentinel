@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "bio-sentinel"
+version = "0.1.0"
+description = "Automated Validation Framework for Conservation AI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Isak Smith"},
+]
+keywords = ["conservation", "AI", "QA", "testing", "wildlife", "camera-trap"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-html>=4.0",
+]
+models = [
+    "ultralytics>=8.0",
+    "torch>=2.0",
+    "torchvision>=0.15",
+]
+
+[tool.setuptools.packages.find]
+include = ["bio_sentinel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--html=reports/report.html",
+    "--self-contained-html",
+    "-v",
+]
+markers = [
+    "unit: Level 1 — model unit tests (tensor shapes, contracts)",
+    "regression: Level 2 — golden dataset regression tests",
+    "robustness: Level 3 — environmental robustness smoke tests",
+    "edge_case: Level 4 — hard dataset edge-case integration tests",
+]
