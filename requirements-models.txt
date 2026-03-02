@@ -3,3 +3,8 @@
 ultralytics>=8.0
 torch>=2.0
 torchvision>=0.15
+supervision>=0.17
+wget
+
+# PyTorchWildlife — install from the forked repo or PyPI
+# pip install git+https://github.com/isaksmith/PyTorchWildlifeCameraTraps.git

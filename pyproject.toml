@@ -4,10 +4,10 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "bio-sentinel"
-version = "0.1.0"
+version = "0.2.0"
 description = "Automated Validation Framework for Conservation AI"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
     {name = "Isak Smith"},
@@ -35,7 +35,12 @@ models = [
     "ultralytics>=8.0",
     "torch>=2.0",
     "torchvision>=0.15",
+    "supervision>=0.17",
+    "wget",
 ]
+
+[project.scripts]
+bio-sentinel = "bio_sentinel.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["bio_sentinel*"]
@@ -52,4 +57,5 @@ markers = [
     "regression: Level 2 — golden dataset regression tests",
     "robustness: Level 3 — environmental robustness smoke tests",
     "edge_case: Level 4 — hard dataset edge-case integration tests",
+    "integration: Phase 2 — real model integration tests (requires GPU or patience)",
 ]

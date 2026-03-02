@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
 
 jobs:
   test:
@@ -35,3 +37,32 @@ jobs:
         with:
           name: test-report-py${{ matrix.python-version }}
           path: reports/report.html
+
+  # Weekly real-model integration tests (slower, downloads weights)
+  integration:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install all dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-models.txt
+          pip install git+https://github.com/isaksmith/PyTorchWildlifeCameraTraps.git
+
+      - name: Run integration tests
+        run: pytest -m integration -v --html=reports/integration-report.html --self-contained-html
+
+      - name: Upload integration report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-report
+          path: reports/integration-report.html
