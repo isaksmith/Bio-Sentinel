@@ -89,7 +89,7 @@ Output:
 bio_sentinel/
 ├── core/              # ABC, Prediction dataclass, plugin registry
 ├── distorters/        # Rain, fog, low-light, occlusion plugins
-├── models/            # Model wrappers (mock + MegaDetector v5/v6)
+├── models/            # Model wrappers (mock + MegaDetector v5/v6/v6-MIT/v6-Apache)
 ├── datasets/          # Golden dataset loader + synthetic generator
 ├── reporting/         # pytest-html hooks + JSON comparison reports
 └── cli.py             # Command-line interface
@@ -139,7 +139,7 @@ pytest -m edge_case     # Level 4 only
 | Phase | Focus | Status |
 |-------|-------|--------|
 | 1 | Core engine — distorters, mock model, test pyramid | ✅ Done |
-| 2 | Real model wrappers (MegaDetector v5/v6), JSON comparison CLI | ✅ Done |
+| 2 | Real model wrappers (MegaDetector v5/v6/v6-MIT/v6-Apache), JSON comparison CLI | ✅ Done |
 | 3 | Open-source launch, docs, pip-installable package | ✅ Current |
 
 ## License

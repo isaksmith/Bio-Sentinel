@@ -66,10 +66,29 @@ def _resolve_model(key: str):
         from bio_sentinel.models.megadetector_v6 import MegaDetectorV6Wrapper
         return MegaDetectorV6Wrapper(version="MDV6-rtdetr-c")
 
+    # --- MIT-licensed v6 variants (YOLOv9, permissive license) -----------
+    if key in ("mdv6-mit", "mdv6-mit-yolov9c", "mdv6-mit-yolov9-c"):
+        from bio_sentinel.models.megadetector_v6_mit import MegaDetectorV6MITWrapper
+        return MegaDetectorV6MITWrapper(version="MDV6-mit-yolov9-c")
+
+    if key in ("mdv6-mit-yolov9e", "mdv6-mit-yolov9-e"):
+        from bio_sentinel.models.megadetector_v6_mit import MegaDetectorV6MITWrapper
+        return MegaDetectorV6MITWrapper(version="MDV6-mit-yolov9-e")
+
+    # --- Apache-licensed v6 variants (RT-DETR v2, permissive license) ----
+    if key in ("mdv6-apa", "mdv6-apa-rtdetr-c"):
+        from bio_sentinel.models.megadetector_v6_apache import MegaDetectorV6ApacheWrapper
+        return MegaDetectorV6ApacheWrapper(version="MDV6-apa-rtdetr-c")
+
+    if key in ("mdv6-apa-rtdetr-e",):
+        from bio_sentinel.models.megadetector_v6_apache import MegaDetectorV6ApacheWrapper
+        return MegaDetectorV6ApacheWrapper(version="MDV6-apa-rtdetr-e")
+
     raise ValueError(
         f"Unknown model key '{key}'. Available: mock, mdv5, mdv5a, mdv5b, "
         f"mdv6, mdv6-yolov9c, mdv6-yolov9e, mdv6-yolov10c, mdv6-yolov10e, "
-        f"mdv6-rtdetr"
+        f"mdv6-rtdetr, mdv6-mit, mdv6-mit-yolov9c, mdv6-mit-yolov9e, "
+        f"mdv6-apa, mdv6-apa-rtdetr-c, mdv6-apa-rtdetr-e"
     )
 
 
@@ -148,11 +167,15 @@ def cmd_list_models(_args: argparse.Namespace) -> None:
         ("mock", "MockMegaDetector (no real model needed)"),
         ("mdv5 / mdv5a", "MegaDetector v5a (YOLOv5)"),
         ("mdv5b", "MegaDetector v5b (YOLOv5)"),
-        ("mdv6 / mdv6-yolov9c", "MegaDetector v6 YOLOv9-C"),
-        ("mdv6-yolov9e", "MegaDetector v6 YOLOv9-E"),
-        ("mdv6-yolov10c", "MegaDetector v6 YOLOv10-C"),
-        ("mdv6-yolov10e", "MegaDetector v6 YOLOv10-E"),
-        ("mdv6-rtdetr", "MegaDetector v6 RT-DETR-C"),
+        ("mdv6 / mdv6-yolov9c", "MegaDetector v6 YOLOv9-C  [AGPL]"),
+        ("mdv6-yolov9e", "MegaDetector v6 YOLOv9-E  [AGPL]"),
+        ("mdv6-yolov10c", "MegaDetector v6 YOLOv10-C  [AGPL]"),
+        ("mdv6-yolov10e", "MegaDetector v6 YOLOv10-E  [AGPL]"),
+        ("mdv6-rtdetr", "MegaDetector v6 RT-DETR-C  [AGPL]"),
+        ("mdv6-mit / mdv6-mit-yolov9c", "MegaDetector v6 MIT YOLOv9-C  [MIT]"),
+        ("mdv6-mit-yolov9e", "MegaDetector v6 MIT YOLOv9-E  [MIT]"),
+        ("mdv6-apa / mdv6-apa-rtdetr-c", "MegaDetector v6 Apache RT-DETR-C  [Apache-2.0]"),
+        ("mdv6-apa-rtdetr-e", "MegaDetector v6 Apache RT-DETR-E  [Apache-2.0]"),
     ]
     print("Available model keys:\n")
     for key, desc in keys:

@@ -6,5 +6,10 @@ torchvision>=0.15
 supervision>=0.17
 wget
 
+# Additional deps for MIT-licensed v6 variants (MegaDetectorV6MIT)
+lightning>=2.0
+omegaconf>=2.3
+pyyaml>=6.0
+
 # PyTorchWildlife — install from the forked repo or PyPI
 # pip install git+https://github.com/isaksmith/PyTorchWildlifeCameraTraps.git

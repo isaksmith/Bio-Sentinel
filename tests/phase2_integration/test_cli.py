@@ -51,3 +51,5 @@ class TestCLIListModels:
         captured = capsys.readouterr()
         assert "mock" in captured.out.lower()
         assert "mdv5" in captured.out.lower()
+        assert "mit" in captured.out.lower()
+        assert "apache" in captured.out.lower()
